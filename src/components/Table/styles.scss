@@ -1,0 +1,99 @@
+@import "../../sass/variables.scss";
+
+.section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0;
+  background: $light-bg;
+  color: $text;
+  overflow: hidden;
+  position: relative;
+}
+
+.section__row a {
+  color: $yellow;
+  display: flex;
+}
+.section__row a:hover {
+  color: darken($yellow, 20%);
+}
+
+.section__ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.section__ul__li {
+  margin: 0;
+  padding: 5px 10px;
+  font-size: 16px;
+  list-style: none;
+  @media only screen and (max-width: $tablet-width) {
+    font-size: 13px;
+  }
+
+  &__a {
+    &__img {
+      width: 30px;
+      margin-right: 4px;
+      @media only screen and (max-width: $phone-width) {
+        display: none;
+      }
+    }
+  }
+}
+
+.section__row {
+  padding: 20px 0;
+  height: 30px;
+  font-size: 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  border-top: 1px solid darken($light-bg, 100%);
+  &:hover {
+    background-color: lighten($dark-bg, 10%);
+  }
+}
+
+.section__row__title {
+  font-weight: bold;
+  padding: 25px 0 5px 0;
+  height: 45px;
+  font-size: 0;
+  background-color: $light-bg;
+  border-left: 3px solid lighten($light-bg, 100%);
+
+  &:hover {
+    height: 45px;
+    background-color: $light-bg;
+    border-left: 3px solid lighten($light-bg, 100%);
+  }
+}
+
+.section__ul__li-hide {
+  @media only screen and (max-width: $tablet-width) {
+    display: none;
+  }
+}
+.section__ul__li-hide-phone {
+  @media only screen and (max-width: $phone-width) {
+    display: none;
+  }
+}
+
+.section__row__border_left {
+  border-left: 3px solid darken($yellow, 30%);
+}
+
+.section__ul__li__button-add {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: rgba(92, 89, 83, 0.7);
+  border-radius: 30%;
+  padding: 5px;
+}
