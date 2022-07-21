@@ -6,11 +6,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import Loading from "../Loading";
 import Pagination from "./Pagination";
-import { getCrypto } from "../../redux/actions/cryptoDataAction";
-import "./styles.scss";
 import Modal from "../Modal";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
+import { addCrypto } from "../../redux/actions/walletAction";
+import { getCryptoFromApi } from "../../redux/actions/cryptoDataAction";
+
+import "./styles.scss";
 
 const Table = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,18 +23,12 @@ const Table = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCrypto());
+    dispatch(getCryptoFromApi());
   }, [dispatch]);
 
-  const modalOpen = (item) => {
+  const modalOpen = (itemName) => {
     setModalVisible(true);
-    setCryptoSelected(item.name);
-  };
-
-  const addCryptoToWallet = (cryptoName, cryptoAmount) => {
-    //TODO localStorage wallet logic
-    //console.log(cryptoName, cryptoAmount);
-    //let cryptoWallet = JSON.parse(localStorage.getItem("crypto"));
+    setCryptoSelected(itemName);
   };
 
   let [currentPage, setCurrentPage] = useState(1);
@@ -62,13 +58,19 @@ const Table = () => {
             <FontAwesomeIcon
               icon={faPlus}
               className="button-add"
-              onClick={() => addCryptoToWallet(cryptoSelected, cryptoAmount)}
+              onClick={() => {
+                dispatch(addCrypto(cryptoSelected, cryptoAmount));
+                setModalVisible(false);
+                setCryptoAmount(1);
+              }}
             />
           </Modal>
           <section className="crypto-table">
             <TableHeader />
             {currentCryptos.map((item) => {
-              return <TableRow item={item} modalOpen={modalOpen} />;
+              return (
+                <TableRow item={item} modalOpen={modalOpen} key={item.id} />
+              );
             })}
             <Pagination
               cryptoPerPage={cryptoPerPage}

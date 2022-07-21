@@ -1,6 +1,6 @@
 import { SET_CRYPTO } from "../reducers/cryptoDataReducer";
 
-export const getCrypto = () => {
+export const getCryptoFromApi = () => {
   return async (dispatch) => {
     try {
       await fetch("https://api.coincap.io/v2/assets")

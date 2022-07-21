@@ -44,7 +44,7 @@ const TableRow = ({ item, modalOpen }) => {
             <FontAwesomeIcon
               icon={faPlus}
               className="button-add"
-              onClick={modalOpen}
+              onClick={() => modalOpen(item.name)}
             />
           </li>
         </ul>

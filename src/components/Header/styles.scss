@@ -1,5 +1,15 @@
 @import "../../sass/variables.scss";
 
+@mixin icon($size, $cursor: pointer, $padding-left: 0) {
+  margin-left: auto;
+  padding: 5px;
+  width: $size;
+  height: $size;
+  cursor: $cursor;
+  color: $yellow;
+  padding-left: $padding-left;
+}
+
 .wrapper {
   width: 100%;
   display: flex;
@@ -13,15 +23,44 @@
   display: flex;
   box-sizing: border-box;
   &__wallet {
-    margin-left: auto;
-    padding: 5px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    color: $yellow;
+    @include icon(30px);
 
     @media only screen and (max-width: $phone-width) {
       margin: auto;
     }
   }
+}
+.crypto-wallet-list {
+  padding: 0;
+  &__item {
+    padding: 10px;
+    min-width: 200px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+
+    border-left: 3px solid $yellow;
+    background-color: $light-bg;
+    &:hover {
+      background-color: $dark-bg;
+    }
+    margin-bottom: 5px;
+  }
+}
+
+.crypto-wallet-caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.remove-button {
+  @include icon(20px);
+}
+.wallet-icon {
+  @include icon(20px, auto, 10px);
 }
