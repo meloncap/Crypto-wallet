@@ -7,9 +7,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../Loading";
 import Pagination from "./Pagination";
 import { getCrypto } from "../../redux/actions/cryptoDataAction";
-import { formatNumber } from "../../services";
 import "./styles.scss";
 import Modal from "../Modal";
+import TableHeader from "./TableHeader";
+import TableRow from "./TableRow";
 
 const Table = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -22,6 +23,11 @@ const Table = () => {
   useEffect(() => {
     dispatch(getCrypto());
   }, [dispatch]);
+
+  const modalOpen = (item) => {
+    setModalVisible(true);
+    setCryptoSelected(item.name);
+  };
 
   const addCryptoToWallet = (cryptoName, cryptoAmount) => {
     //TODO localStorage wallet logic
@@ -60,83 +66,9 @@ const Table = () => {
             />
           </Modal>
           <section className="crypto-table">
-            <main className="crypto-table__row crypto-table__header">
-              <ul className="crypto-table__list">
-                <li className="crypto-table__list-item">Rank</li>
-                <li className="crypto-table__list-item">Name </li>
-                <li className="crypto-table__list-item">Price</li>
-                <li className="crypto-table__list-item crypto-table__list-item-hide">
-                  Market Cap
-                </li>
-                <li className="crypto-table__list-item crypto-table__list-item-hide">
-                  VWAP (24Hr)
-                </li>
-                <li className="crypto-table__list-item crypto-table__list-item-hide">
-                  Supply
-                </li>
-                <li className="crypto-table__list-item crypto-table__list-item-hide-phone">
-                  Volume(24Hr)
-                </li>
-                <li className="crypto-table__list-item crypto-table__list-item-hide-phone">
-                  Change(24Hr)
-                </li>
-                <li className="crypto-table__list-item">Add</li>
-              </ul>
-            </main>
+            <TableHeader />
             {currentCryptos.map((item) => {
-              return (
-                <section className="crypto-table" key={item.rank}>
-                  <article className="crypto-table__row crypto-table__row-border">
-                    <ul className="crypto-table__list">
-                      <li className="crypto-table__list-item">{item.rank}</li>
-                      <li className="crypto-table__list-item">
-                        <a
-                          href={item.explorer}
-                          className="crypto__link-explorer"
-                        >
-                          <img
-                            className="crypto__logo"
-                            alt="currency logo"
-                            src={`https://assets.coincap.io/assets/icons/${item.symbol.toLowerCase()}@2x.png`}
-                          />
-                          <span>{item.name}</span>
-                        </a>
-                      </li>
-                      <li className="crypto-table__list-item">{`$ ${formatNumber(
-                        item.priceUsd
-                      )}`}</li>
-                      <li className="crypto-table__list-item crypto-table__list-item-hide">{`$ ${formatNumber(
-                        item.marketCapUsd,
-                        9
-                      )}b`}</li>
-                      <li className="crypto-table__list-item crypto-table__list-item-hide">{`$ ${formatNumber(
-                        item.vwap24Hr
-                      )}`}</li>
-                      <li className="crypto-table__list-item crypto-table__list-item-hide">{` ${formatNumber(
-                        item.supply,
-                        6
-                      )}m`}</li>
-                      <li className="crypto-table__list-item crypto-table__list-item-hide-phone">{`$ ${formatNumber(
-                        item.volumeUsd24Hr,
-                        9
-                      )}b`}</li>
-                      <li className="crypto-table__list-item crypto-table__list-item-hide-phone">{` ${formatNumber(
-                        item.changePercent24Hr
-                      )}%`}</li>
-                      <li className="crypto-table__list-item">
-                        <FontAwesomeIcon
-                          icon={faPlus}
-                          className="button-add"
-                          onClick={() => {
-                            setModalVisible(true);
-                            setCryptoSelected(item.name);
-                          }}
-                        />
-                      </li>
-                    </ul>
-                  </article>
-                </section>
-              );
+              return <TableRow item={item} modalOpen={modalOpen} />;
             })}
             <Pagination
               cryptoPerPage={cryptoPerPage}
