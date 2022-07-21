@@ -1,0 +1,36 @@
+@import "../../sass/variables.scss";
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: $dark-bg;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+
+  &-visible {
+    transform: scale(1);
+  }
+
+  &__content {
+    padding: 30px;
+    position: relative;
+    background-color: lighten($dark-bg, 20%);
+    color: $text;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.close-icon {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}

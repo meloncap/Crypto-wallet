@@ -1,0 +1,27 @@
+@import "../../sass/variables.scss";
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: $light-bg;
+}
+.header {
+  padding: 10px 0px;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  box-sizing: border-box;
+  &__wallet {
+    margin-left: auto;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    color: $yellow;
+
+    @media only screen and (max-width: $phone-width) {
+      margin: auto;
+    }
+  }
+}

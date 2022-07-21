@@ -7,19 +7,17 @@ const Pagination = ({ cryptoPerPage, totalPosts, paginate }) => {
     pageNumbers.push(i);
   }
   return (
-    <nav>
-      <ul className="pagination-block">
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            onClick={() => paginate(number)}
-            className="pagination-block__li"
-          >
-            {number}
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <ul className="pagination-list">
+      {pageNumbers.map((number) => (
+        <li
+          key={number}
+          onClick={() => paginate(number)}
+          className="pagination-list__item"
+        >
+          {number}
+        </li>
+      ))}
+    </ul>
   );
 };
 
