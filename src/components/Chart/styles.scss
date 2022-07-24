@@ -1,0 +1,6 @@
+@import "../../sass/variables.scss";
+.chart-wrapper {
+  @media only screen and (max-width: $phone-width) {
+    display: none;
+  }
+}

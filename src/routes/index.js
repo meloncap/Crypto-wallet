@@ -1,6 +1,6 @@
 import React from "react";
 import loadable from "@loadable/component";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import Loading from "../components/Loading";
 
@@ -17,9 +17,10 @@ const NotFoundPage = loadable(() => import("../containers/NotFoundPage"), {
 const RoutesComponent = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
       <Route path="/404" element={<NotFoundPage />} />
-      <Route path=":id" element={<CryptoInfoPage />} />
+      <Route path=":crypto" element={<CryptoInfoPage />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/404" replace />} />
     </Routes>
   );
 };

@@ -1,27 +1,25 @@
 @import "../../sass/variables.scss";
 
 .crypto-table {
-  width: 100%;
-  max-width: 1000px;
-  margin: 20px auto;
+  @include wrapper-center();
   background: $light-bg;
   color: $text;
 
   &__row {
     padding: 20px 0;
     transition: all 0.2s ease-out;
+    cursor: pointer;
     &:hover {
       background-color: lighten($dark-bg, 10%);
     }
 
     &-border {
-      border-left: 3px solid darken($yellow, 30%);
+      @include border-left-colored;
     }
   }
 
   &__header {
     font-weight: bold;
-    padding: 25px 0 5px 0;
     background-color: $light-bg;
     border-left: 3px solid lighten($light-bg, 100%);
 
@@ -39,12 +37,13 @@
 
     &-item {
       padding: 5px 10px;
-      width: 9%;
+      width: auto;
       font-size: 16px;
       list-style: none;
+      display: flex;
+      align-items: center;
       @media only screen and (max-width: $tablet-width) {
         font-size: 13px;
-        width: 15%;
       }
 
       &-hide {
@@ -81,23 +80,11 @@
 }
 
 .button-add {
-  padding: 5px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  background-color: rgba(92, 89, 83, 0.7);
-  border-radius: 30%;
+  @include button-add();
 }
 
 .modal__input {
-  padding: 10px;
-  margin: 10px 0;
-  border: 0;
-  color: $text;
-  background-color: $light-bg;
-  &:hover {
-    background-color: $dark-bg;
-  }
+  @include input();
 }
 
 .modal__button {

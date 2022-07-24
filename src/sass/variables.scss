@@ -6,3 +6,50 @@ $text: rgba(255, 255, 255, 0.9);
 
 $tablet-width: 950px;
 $phone-width: 455px;
+
+@mixin icon($size, $cursor: pointer, $padding-left: 0, $ml: auto) {
+  margin-left: $ml;
+  padding: 5px;
+  width: $size;
+  height: $size;
+  cursor: $cursor;
+  color: $yellow;
+  padding-left: $padding-left;
+}
+
+@mixin wrapper-center {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+@mixin border-left-colored {
+  border-left: 3px solid darken($yellow, 30%);
+}
+
+@mixin button-add {
+  padding: 5px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: rgba(92, 89, 83, 0.7);
+  border-radius: 30%;
+}
+
+@mixin input {
+  padding: 10px;
+  margin: 10px 0;
+  border: 0;
+  color: $text;
+  background-color: $light-bg;
+  &:hover {
+    background-color: $dark-bg;
+  }
+}
+
+@mixin flex($flex-dir: column, $align: center) {
+  display: flex;
+  flex-direction: $flex-dir;
+  align-items: $align;
+  justify-content: center;
+}

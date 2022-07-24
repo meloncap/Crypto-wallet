@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading";
 import Pagination from "./Pagination";
 import Modal from "../Modal";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
-import { addCrypto } from "../../redux/actions/walletAction";
+import ModalAddContent from "../ModalAddContent";
 import { getCryptoFromApi } from "../../redux/actions/cryptoDataAction";
+import { formatCryptoData } from "../../services";
 
 import "./styles.scss";
 
 const Table = () => {
+  const dispatch = useDispatch();
+
   const [modalVisible, setModalVisible] = useState(false);
-  const [cryptoAmount, setCryptoAmount] = useState(1);
   const [cryptoSelected, setCryptoSelected] = useState();
 
   const crypto = useSelector((state) => state.crypto.crypto);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCryptoFromApi());
@@ -46,30 +43,20 @@ const Table = () => {
       ) : (
         <>
           <Modal visible={modalVisible} setVisible={setModalVisible}>
-            Add to your own wallet
-            <input
-              type="number"
-              min="1"
-              placeholder="Enter amount"
-              className="modal__input"
-              value={cryptoAmount}
-              onChange={(e) => setCryptoAmount(e.target.value)}
-            ></input>
-            <FontAwesomeIcon
-              icon={faPlus}
-              className="button-add"
-              onClick={() => {
-                dispatch(addCrypto(cryptoSelected, cryptoAmount));
-                setModalVisible(false);
-                setCryptoAmount(1);
-              }}
+            <ModalAddContent
+              cryptoSelected={cryptoSelected}
+              setModalVisible={setModalVisible}
             />
           </Modal>
           <section className="crypto-table">
             <TableHeader />
             {currentCryptos.map((item) => {
               return (
-                <TableRow item={item} modalOpen={modalOpen} key={item.id} />
+                <TableRow
+                  crypto={formatCryptoData(item)}
+                  modalOpen={modalOpen}
+                  key={item.id}
+                />
               );
             })}
             <Pagination

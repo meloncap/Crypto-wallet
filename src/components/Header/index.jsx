@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWallet, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faWallet,
+  faTrash,
+  faCircleDollarToSlot,
+} from "@fortawesome/free-solid-svg-icons";
 import Modal from "../Modal";
 import Loading from "../Loading";
 import { getWallet } from "../../redux/actions/walletAction";
@@ -11,24 +15,34 @@ import { removeCrypto } from "../../redux/actions/walletAction";
 import "./styles.scss";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [modalVisible, setModalVisible] = useState(false);
   const [cryptoInWallet, setCryptoInWallet] = useState();
 
   const wallet = useSelector((state) => state.wallet.wallet);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getWallet());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     setCryptoInWallet(wallet);
   }, [wallet]);
 
+  const onNavigate = () => {
+    navigate("/");
+  };
+
   return (
     <header className="wrapper">
       <div className="header">
+        <FontAwesomeIcon
+          icon={faCircleDollarToSlot}
+          className="header__homepage"
+          onClick={onNavigate}
+        />
         <FontAwesomeIcon
           icon={faWallet}
           className="header__wallet"

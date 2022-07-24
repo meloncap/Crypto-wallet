@@ -1,15 +1,5 @@
 @import "../../sass/variables.scss";
 
-@mixin icon($size, $cursor: pointer, $padding-left: 0) {
-  margin-left: auto;
-  padding: 5px;
-  width: $size;
-  height: $size;
-  cursor: $cursor;
-  color: $yellow;
-  padding-left: $padding-left;
-}
-
 .wrapper {
   width: 100%;
   display: flex;
@@ -26,7 +16,14 @@
     @include icon(30px);
 
     @media only screen and (max-width: $phone-width) {
-      margin: auto;
+      padding-right: 10px;
+    }
+  }
+
+  &__homepage {
+    @include icon(30px, pointer, 0, 0);
+    @media only screen and (max-width: $tablet-width) {
+      padding-left: 10px;
     }
   }
 }

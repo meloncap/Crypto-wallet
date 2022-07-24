@@ -18,10 +18,10 @@ const TableHeader = () => {
           Supply
         </li>
         <li className="crypto-table__list-item crypto-table__list-item-hide-phone">
-          Volume(24Hr)
+          Volume <span className="crypto-table__list-item-hide">(24Hr)</span>
         </li>
         <li className="crypto-table__list-item crypto-table__list-item-hide-phone">
-          Change(24Hr)
+          Change <span className="crypto-table__list-item-hide">(24Hr)</span>
         </li>
         <li className="crypto-table__list-item">Add</li>
       </ul>

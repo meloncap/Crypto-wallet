@@ -1,7 +1,14 @@
 import React from "react";
+import Header from "../../components/Header";
+import NotFound from "../../components/NotFound";
 
 const NotFoundPage = () => {
-  return <div>NotFoundPage</div>;
+  return (
+    <>
+      <Header />
+      <NotFound />
+    </>
+  );
 };
 
 export default NotFoundPage;

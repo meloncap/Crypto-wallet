@@ -1,0 +1,22 @@
+@import "../../sass/variables.scss";
+
+.wrapper__not-found {
+  height: 100%;
+  @include flex();
+  &-flex {
+    @include flex(row);
+  }
+}
+
+.icon-number {
+  @include icon(60px, auto, 0, 0);
+  color: $text;
+}
+
+.title {
+  color: $text;
+}
+.link-home {
+  color: $text;
+  text-decoration: underline;
+}
