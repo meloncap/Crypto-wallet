@@ -7,11 +7,12 @@
   background-color: $light-bg;
 }
 .header {
-  padding: 10px 0px;
+  padding: 10px;
   width: 100%;
   max-width: 1000px;
   display: flex;
   box-sizing: border-box;
+  color: $text;
   &__wallet {
     @include icon(30px);
 
@@ -53,6 +54,31 @@
   align-items: center;
   font-weight: bold;
   font-size: 18px;
+}
+
+.crypto-top__list {
+  @include flex(row, center, space-around);
+  margin: 0 100px;
+  width: 100%;
+  @media only screen and (max-width: $tablet-width) {
+    display: none;
+  }
+  &-item {
+    list-style: none;
+    color: $text;
+    margin-right: 5px;
+    &-colored {
+      color: $yellow;
+      font-weight: bold;
+    }
+  }
+}
+
+.cost-wallet {
+  color: $yellow;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .remove-button {

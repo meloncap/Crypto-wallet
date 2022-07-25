@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import "./styles.scss";
@@ -11,8 +11,21 @@ const Modal = ({ children, visible, setVisible }) => {
     if (e.target === overlayRef.current) setVisible(false);
   };
 
+  const escFunction = (event) => {
+    if (event.key === "Escape") {
+      setVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", escFunction, false);
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };
+  }, []);
+
   return (
-    <div
+    <form
       ref={overlayRef}
       className={visible ? "modal modal-visible" : "modal"}
       onClick={overlayClick}
@@ -25,7 +38,7 @@ const Modal = ({ children, visible, setVisible }) => {
         />
         {children}
       </div>
-    </div>
+    </form>
   );
 };
 

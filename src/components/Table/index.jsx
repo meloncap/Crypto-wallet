@@ -23,9 +23,9 @@ const Table = () => {
     dispatch(getCryptoFromApi());
   }, [dispatch]);
 
-  const modalOpen = (itemName) => {
+  const modalOpen = (item) => {
     setModalVisible(true);
-    setCryptoSelected(itemName);
+    setCryptoSelected(item);
   };
 
   let [currentPage, setCurrentPage] = useState(1);
@@ -63,6 +63,7 @@ const Table = () => {
               cryptoPerPage={cryptoPerPage}
               totalPosts={crypto.length}
               paginate={paginate}
+              currentPage={currentPage}
             />
           </section>
         </>

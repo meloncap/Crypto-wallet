@@ -1,5 +1,6 @@
 const defaultState = {
   crypto: [],
+  topCrypto: [],
   selectedCrypto: [],
   selectedCryptoError: false,
   cryptoHistory: [],
@@ -14,7 +15,12 @@ export const SET_SELECTED_CRYPTO_ERROR = "SET_SELECTED_CRYPTO_ERROR";
 export const cryptoDataReducer = (state = defaultState, action) => {
   switch (action.type) {
     case SET_CRYPTO:
-      return { ...state, crypto: action.crypto, isLoading: false };
+      return {
+        ...state,
+        crypto: action.crypto,
+        topCrypto: action.crypto.slice(0, 3),
+        isLoading: false,
+      };
 
     case SET_SELECTED_CRYPTO:
       return {

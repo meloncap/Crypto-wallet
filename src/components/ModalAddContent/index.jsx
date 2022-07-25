@@ -8,6 +8,13 @@ const ModalAddContent = ({ cryptoSelected, setModalVisible }) => {
   const dispatch = useDispatch();
 
   const [cryptoAmount, setCryptoAmount] = useState(1);
+  const handleAdd = () => {
+    dispatch(
+      addCrypto(cryptoSelected.name, cryptoAmount, cryptoSelected.priceUsd)
+    );
+    setModalVisible(false);
+    setCryptoAmount(1);
+  };
 
   return (
     <>
@@ -22,16 +29,20 @@ const ModalAddContent = ({ cryptoSelected, setModalVisible }) => {
           setCryptoAmount(e.target.value);
           e.stopPropagation();
         }}
-      ></input>
-      <FontAwesomeIcon
-        icon={faPlus}
-        className="button-add"
-        onClick={() => {
-          dispatch(addCrypto(cryptoSelected, cryptoAmount));
-          setModalVisible(false);
-          setCryptoAmount(1);
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            handleAdd();
+          }
+          e.stopPropagation();
         }}
-      />
+      ></input>
+      <button onClick={(e) => e.preventDefault()} className="button">
+        <FontAwesomeIcon
+          icon={faPlus}
+          className="button-add"
+          onClick={handleAdd}
+        />
+      </button>
     </>
   );
 };

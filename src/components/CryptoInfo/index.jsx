@@ -110,7 +110,7 @@ const CryptoInfo = () => {
           </div>
           <Modal visible={modalVisible} setVisible={setModalVisible}>
             <ModalAddContent
-              cryptoSelected={selectedCrypto.name}
+              cryptoSelected={selectedCrypto}
               setModalVisible={setModalVisible}
             />
           </Modal>

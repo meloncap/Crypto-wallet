@@ -1,7 +1,7 @@
 @import "../../sass/variables.scss";
 
 .wrapper__not-found {
-  height: 100%;
+  height: 90vh;
   @include flex();
   &-flex {
     @include flex(row);

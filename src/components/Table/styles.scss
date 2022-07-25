@@ -36,13 +36,24 @@
     justify-content: space-around;
 
     &-item {
+      &:first-child {
+        width: 2%;
+      }
       padding: 5px 10px;
-      width: auto;
+      white-space: nowrap;
+      width: 12%;
       font-size: 16px;
       list-style: none;
       display: flex;
       align-items: center;
       @media only screen and (max-width: $tablet-width) {
+        width: 9%;
+        &:first-child {
+          width: 2%;
+        }
+        &:last-child {
+          width: 3%;
+        }
         font-size: 13px;
       }
 
@@ -62,10 +73,14 @@
 }
 
 .crypto__link-explorer {
+  white-space: break-spaces;
   color: $yellow;
   display: flex;
   align-items: center;
-
+  @media only screen and (max-width: $tablet-width) {
+    display: flex;
+    flex-direction: column;
+  }
   &:hover {
     color: darken($yellow, 20%);
   }
@@ -74,6 +89,9 @@
 .crypto__logo {
   width: 30px;
   margin-right: 4px;
+  @media only screen and (max-width: $tablet-width) {
+    width: 20px;
+  }
   @media only screen and (max-width: $phone-width) {
     display: none;
   }

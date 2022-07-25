@@ -40,7 +40,7 @@ const TableRow = ({ crypto, modalOpen }) => {
               className="button-add"
               onClick={(e) => {
                 e.stopPropagation();
-                modalOpen(crypto.name);
+                modalOpen(crypto);
               }}
             />
           </li>

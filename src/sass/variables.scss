@@ -47,9 +47,14 @@ $phone-width: 455px;
   }
 }
 
-@mixin flex($flex-dir: column, $align: center) {
+@mixin flex($flex-dir: column, $align: center, $justify: center) {
   display: flex;
   flex-direction: $flex-dir;
   align-items: $align;
-  justify-content: center;
+  justify-content: $justify;
+}
+.button {
+  background: transparent;
+  outline: none;
+  border: none;
 }
